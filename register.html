@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="name">name</label>
+        <input type="text" id="name">
+        <br>
+        <label for="email"> email</label>
+        <input type="text" id="email">
+        <br>
+        <label for="username"> username</label>
+        <input type="text" id="username">
+        <br>
+        <label for="password">password</label>
+        <input type="text" id="passcode">
+        <br>
+        <button type="submit">
+            submit
+        </button>
+    </form>
+    <script>
+        let form = document.querySelector('form')
+        let name = document.querySelector('#name')
+        let email = document.querySelector('#email')
+        let username = document.querySelector('#username')
+        let password = document.querySelector('#passcode')
+        let button = document.querySelector('button')
+        
+        form.onsubmit = async (e) => {
+            e.preventDefault()
+            
+
+            const data = await fetch('http://localhost:8052/newentry', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+
+                    name: name.value,
+                    email: email.value,
+                    username: username.value,
+                    password: password.value,
+                    
+                })
+            })
+            const result = await data.json()
+            console.log(result)
+            
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
